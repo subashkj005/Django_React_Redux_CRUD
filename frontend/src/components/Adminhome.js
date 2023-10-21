@@ -40,7 +40,7 @@ function Adminhome() {
                     </div>
                     <div className="col-sm-7">
                         <Link style={{textDecoration:"none"}} to="createUser"><button className='button-adduser' >Add User</button></Link>
-                        <Link style={{textDecoration:"none"}} to="createUser"><button className='button-logout' style={{marginLeft:'1rem'}} >Logout</button></Link>
+                        <Link style={{textDecoration:"none"}} to="/adminlogin"><button className='button-logout' style={{marginLeft:'1rem'}} >Logout</button></Link>
                         						
                     </div>
                     
@@ -73,7 +73,7 @@ function Adminhome() {
                             <td>{user.email}</td>
                             <td>{user.created_at}</td>                        
                             <td>
-                              <Link to={ `/users/${user.id}`}>
+                              <Link to={`${user.id}`}>
                                 <button className='button-edit'>Edit</button>
                               </Link>
                             </td>

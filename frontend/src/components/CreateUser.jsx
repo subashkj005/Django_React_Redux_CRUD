@@ -47,7 +47,7 @@ function CreateUser(props) {
               navigate('/')
             }
             else {
-              navigate('/users')
+              navigate(-1)
             }
 
         }else {

@@ -16,12 +16,12 @@ function App() {
           <Route path="/" element={<UserLogin props={{name: 'User Login'}} />} />
           <Route path="userhome" element={<UserHome />} />
           <Route path='signup' element={<CreateUser props={{name : 'Signup'}} />} />
-          <Route path="users/:id" element={<EditUser />} />
 
           <Route path="adminlogin/" >
             <Route index element={<AdminLogin />}/>
             <Route path="users/" element={<Adminhome />}/>
             <Route path="users/createUser" element={<CreateUser props={{name : 'createuser'}} />} />
+            <Route path="users/:id" element={<EditUser />} />
           </Route>
         </Routes>
       </BrowserRouter>

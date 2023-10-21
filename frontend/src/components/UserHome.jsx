@@ -7,7 +7,10 @@ import { updateUser } from '../features/userlist/userEditSlice'
 
 function UserHome() {
 
-    let user = useSelector(state=>state.userlogin.user)
+    // let user = useSelector(state=>state.userlogin.user)
+    const storedData = localStorage.getItem('user');
+    const user = JSON.parse(storedData);
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     
@@ -19,9 +22,7 @@ function UserHome() {
     const apiUrl = 'http://localhost:8000/'
 
     const handlelogout = () => {
-        console.log(user, 'user before');
-        user = []
-        console.log(user, 'user after');
+        localStorage.removeItem('user')
         navigate('/')
     }
 
@@ -31,6 +32,7 @@ function UserHome() {
         updatedUserData.append('profile_picture', newImage)
 
         const userId = user.id
+        console.log(user.id, 'user id');
 
         dispatch(updateUser({ userId, updatedUserData }));
 
@@ -38,13 +40,18 @@ function UserHome() {
 
     useEffect(()=>{
 
-        if(user.length == 0){
+        if(user==null){
             navigate('/')
+        }else{
+
+            setUsername(`${user.first_name} ${user.last_name}`)
+            setEmail(user.email)
+            setImage(user.profile_picture)
         }
-        setUsername(`${user.first_name} ${user.last_name}`)
-        setEmail(user.email)
-        setImage(user.profile_picture)
-    },[user])
+
+        
+        
+    },[])
 
   return (
     <>
@@ -53,7 +60,7 @@ function UserHome() {
             <h1>User Profile</h1>
             <br />
             <img id="profile-image" src={`${apiUrl}${image}`} alt="User Image" />
-            <label for="image-upload" id="upload-button">Edit Profile Picture</label>
+            <label htmlFor="image-upload" id="upload-button">Edit Profile Picture</label>
             <input type="file" id="image-upload" onChange={e=>setNewImage(e.target.files[0])} style={{display : 'none'}} />
             <div id="user-details">
                 {newImage && <button className='save-btn' onClick={handleImageUpdate}>Save</button>}

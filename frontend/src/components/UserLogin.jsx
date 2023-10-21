@@ -25,7 +25,8 @@ function UserLogin(props) {
         axios.post(`${apiUrl}userlogin/`, userData)
         .then((res)=>{
             if (res.data.message == 'login_success') {
-                dispatch(authenticate(res.data.user))
+                // dispatch(authenticate(res.data.user))
+                localStorage.setItem('user', JSON.stringify(res.data.user))
                 navigate('userhome')
 
             }

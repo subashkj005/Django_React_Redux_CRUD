@@ -40,7 +40,7 @@ function EditUser() {
 
         dispatch(updateUser({ userId, updatedUserData }));
 
-        navigate('/users')
+        navigate(-1)
       };
     
 

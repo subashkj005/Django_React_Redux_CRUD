@@ -57,11 +57,9 @@ const userEditSlice = createSlice({
     initialState,
     extraReducers(builder) {
       builder
-        // ... (other cases)
   
         .addCase(updateUser.fulfilled, (state, action) => {
           state.status = 'succeeded';
-          // Update the user data in the Redux store with the response from the server
           state.user = action.payload;
         });
     },
